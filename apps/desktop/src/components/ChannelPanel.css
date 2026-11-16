@@ -9,15 +9,125 @@
 .panel-header {
   display: flex;
   align-items: center;
+  gap: var(--vxl-space-2);
   height: 48px;
   padding: 0 var(--vxl-space-4);
   border-bottom: 1px solid var(--vxl-border);
 }
 
+.panel-title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--vxl-fs-lg);
+  line-height: var(--vxl-lh-lg);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .panel-body {
-  padding: var(--vxl-space-4);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--vxl-space-3) var(--vxl-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vxl-space-4);
 }
 
 .panel-body p {
   margin: 0;
+}
+
+.section-label {
+  padding: 0 var(--vxl-space-2) var(--vxl-space-1);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--vxl-space-2);
+  height: 32px;
+  padding: 0 var(--vxl-space-2);
+  border-radius: var(--vxl-radius-sm);
+}
+
+.row[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.row-glyph {
+  width: 12px;
+  flex: none;
+  text-align: center;
+  font-family: var(--vxl-font-mono);
+}
+
+.row-name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member.offline .row-name {
+  color: var(--vxl-text-muted);
+}
+
+.presence {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--vxl-text-muted);
+}
+
+.presence[data-online="true"] {
+  border-color: var(--vxl-volt);
+  background: var(--vxl-volt);
+}
+
+.member-ping[data-status="ok"] { color: var(--vxl-volt); }
+.member-ping[data-status="warn"] { color: var(--vxl-amber); }
+.member-ping[data-status="bad"] { color: var(--vxl-red); }
+.member-ping[data-status="idle"] { color: var(--vxl-text-muted); }
+
+.panel-footer {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 var(--vxl-space-2);
+  border-top: 1px solid var(--vxl-border);
+  background: var(--vxl-bg);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: var(--vxl-space-1) var(--vxl-space-2);
+  border: 0;
+  border-radius: var(--vxl-radius-sm);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile:hover:not(:disabled) {
+  background: var(--vxl-surface-hover);
+}
+
+.profile-name {
+  max-width: 100%;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-footer .input {
+  width: 100%;
 }

@@ -1,0 +1,73 @@
+.modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+}
+
+/* Flat dimmer: no blur, no gradient (BRAND_SYSTEM.md hard rules). */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--vxl-bg);
+  opacity: 0.8;
+}
+
+.modal {
+  position: relative;
+  width: 480px;
+  max-width: calc(100vw - var(--vxl-space-8));
+  border: 1px solid var(--vxl-border);
+  border-radius: var(--vxl-radius-lg);
+  background: var(--vxl-surface);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--vxl-border);
+}
+
+.tab {
+  flex: 1;
+  height: 40px;
+  border: 0;
+  background: none;
+  color: var(--vxl-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab[aria-selected="true"] {
+  color: var(--vxl-text);
+  border-bottom-color: var(--vxl-volt);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vxl-space-2);
+  padding: var(--vxl-space-5);
+}
+
+.modal-body p {
+  margin: 0;
+}
+
+.key-input {
+  resize: none;
+  font-size: var(--vxl-fs-sm);
+  word-break: break-all;
+}
+
+.preview[data-status="ok"] { color: var(--vxl-volt); }
+.preview[data-status="bad"] { color: var(--vxl-red); }
+
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--vxl-space-3);
+  padding: var(--vxl-space-3) var(--vxl-space-5);
+  border-top: 1px solid var(--vxl-border);
+}

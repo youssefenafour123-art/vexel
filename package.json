@@ -3,10 +3,10 @@
   "private": true,
   "packageManager": "pnpm@12.21.0",
   "scripts": {
-    "dev": "pnpm --filter @vexel/desktop tauri dev",
-    "build": "pnpm --filter @vexel/desktop tauri build",
-    "web:build": "pnpm --filter @vexel/desktop build",
-    "typecheck": "pnpm --filter @vexel/desktop typecheck",
-    "icons": "pnpm --filter @vexel/desktop tauri icon ../../assets/brand/vexel-mark.svg"
+    "dev": "corepack pnpm --filter @vexel/desktop tauri dev",
+    "build": "corepack pnpm --filter @vexel/desktop tauri build",
+    "web:build": "corepack pnpm --filter @vexel/desktop build",
+    "typecheck": "corepack pnpm --filter @vexel/desktop typecheck",
+    "icons": "corepack pnpm --filter @vexel/desktop tauri icon ../../assets/brand/vexel-mark.svg"
   }
 }

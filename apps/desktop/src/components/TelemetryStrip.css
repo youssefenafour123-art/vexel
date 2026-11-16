@@ -26,3 +26,9 @@
 .seg[data-status="warn"] { color: var(--vxl-amber); }
 .seg[data-status="bad"] { color: var(--vxl-red); }
 .seg[data-status="idle"] { color: var(--vxl-text-muted); }
+
+.notice {
+  color: var(--vxl-text);
+  text-transform: none;
+  letter-spacing: 0;
+}

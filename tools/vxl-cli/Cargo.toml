@@ -16,7 +16,12 @@ anyhow.workspace = true
 clap.workspace = true
 vxl-core.workspace = true
 vxl-metrics.workspace = true
+vxl-net.workspace = true
 vxl-platform.workspace = true
+vxl-store.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
 
 [lints]
 workspace = true

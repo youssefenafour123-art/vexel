@@ -7,7 +7,7 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.95"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/vexel/vexel"
+repository = "https://github.com/youssefenafour123-art/vexel"
 publish = false
 
 [workspace.dependencies]
@@ -21,8 +21,18 @@ vxl-audio = { path = "crates/vxl-audio" }
 vxl-aux = { path = "crates/vxl-aux" }
 vxl-telemetry = { path = "crates/vxl-telemetry" }
 vxl-pack = { path = "crates/vxl-pack" }
-# external (later phases add iroh, cpal, opus, rusqlite, ... here)
+# external (later phases add cpal, opus, ... here)
 anyhow = "1"
+data-encoding = "2"
+ed25519-dalek = "3"
+getrandom = "0.3"
+iroh = "1.4"
+iroh-gossip = "0.102"
+n0-future = "0.3"
+bytes = "1"
+rmp-serde = "1"
+rusqlite = { version = "0.43", features = ["bundled"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "signal"] }
 clap = { version = "4.6", features = ["derive"] }
 mimalloc = { version = "0.1", default-features = false }
 serde = { version = "1", features = ["derive"] }
@@ -33,6 +43,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 windows-sys = "0.61"
 tauri = { version = "2", features = [] }
 tauri-build = { version = "2", features = [] }
+tauri-plugin-deep-link = "2.6"
+tauri-plugin-single-instance = { version = "2.5", features = ["deep-link"] }
 
 [workspace.lints.rust]
 unsafe_op_in_unsafe_fn = "deny"

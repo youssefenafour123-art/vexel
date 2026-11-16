@@ -169,8 +169,8 @@ Release profile: `lto = "fat"`, `codegen-units = 1`, `panic = "abort"`, `strip =
 | # | Phase | Status | Done when |
 |---|---|---|---|
 | 0 | Foundation: workspace, Tauri 2 + Solid shell, tokens.css, fonts, icon, CI, `vxl-cli` stub | ✅ Done locally (CI not yet run: no remote) | Branded window launches; CI green |
-| 1 | Identity + Sectors + Link: keypair, Sector Key, deep link, gossip presence, ping/loss HUD | ⏳ Next | Two peers join via Sector Key with live ping |
-| 2 | Text comms: signed log, SQLite, gossip chat, offline pull-sync | ⬜ | Offline peer catches up on reconnect |
+| 1 | Identity + Sectors + Link: keypair, Sector Key, deep link, gossip presence, ping/loss HUD | 🟡 Built; CLI↔CLI verified, desktop↔CLI awaiting user check | Two peers join via Sector Key with live ping |
+| 2 | Text comms: signed log, SQLite, gossip chat, offline pull-sync | ⏳ Next | Offline peer catches up on reconnect |
 | 3 | Comms Channels: cpal/Opus/RNNoise/jitter/mixer, Zero-Floor Gate, PTT, MMCSS | ⬜ | 3+ peers talk; 0.0 KB/s when silent |
 | 4 | Zero-Drag Mode + dynamic tray icon + RAM telemetry | ⬜ | Minimized voice-only < 35 MB |
 | 5 | Aux Channel: slash cmds, queue CRDT, yt-dlp, passthrough, DJ failover | ⬜ | `/play` works; DJ kill resumes mid-track |
@@ -178,6 +178,7 @@ Release profile: `lto = "fat"`, `codegen-units = 1`, `panic = "abort"`, `strip =
 | 7 | .vxl packs + ship: packs, file assoc, updater, installer | ⬜ | Installable auto-updating GitHub release |
 
 Environment notes: Rust 1.99.1 (MSVC) and Node 24 are installed. pnpm 12 runs through corepack (see §6).
+Pinned stack at Phase 1: iroh 1.4, iroh-gossip 0.102, ed25519-dalek 3, rusqlite 0.43 (bundled), tauri-plugin-deep-link 2.6, tauri-plugin-single-instance 2.5.
 Pinned stack at Phase 0: Tauri 2.12 (not the 3.x alpha), SolidJS 1.9, Vite 8, TypeScript 7, windows-sys 0.61.
 
 ### What Phase 0 shipped
@@ -185,3 +186,11 @@ Pinned stack at Phase 0: Tauri 2.12 (not the 3.x alpha), SolidJS 1.9, Vite 8, Ty
   `vxl-platform::memory::working_set_bytes()`. All other crates are documented stubs.
 - The desktop shell emits a `telemetry:core` event at 4 Hz. The UI's bottom strip shows the real core working set. Ping, loss and KB/s show `--` or 0 until Phase 1.
 - Frameless window with a custom title bar, Sector rail, channel panel, and an empty state whose disabled CTAs wait on Phase 1.
+
+### What Phase 1 shipped
+- `vxl-core`: `Identity`/`PeerId` (ed25519, = iroh EndpointId), `Sector`, owner-signed `InviteCap`, `SectorKey` codec
+  (`vxl://s/<base32 MessagePack>`, bootstrap addrs are unsigned hints), signed gossip envelopes (`wire`), `Roster` (ACL: owner, known member, or valid unexpired cap).
+- `vxl-store`: SQLite (user_version migrations) for identity seed (**unencrypted for now; DPAPI planned**), Sectors, members, last peer addrs, settings (`net.relay_url`).
+- `vxl-net`: `Node` = iroh endpoint (N0 preset + MemoryLookup) + gossip topic per Sector + `vxl/ping/1` datagram ping (lower PeerId dials; 1 Hz; EWMA RTT, 30-probe loss window, DIRECT/RELAY path). Socket byte totals feed `CoreMetrics`.
+- Desktop: commands `profile_*`, `sectors_list`, `sector_create|join|key|key_preview|leave`, `link_status`, `deeplink_take`; events `net:roster|links|online`, `deeplink:sector-key`. Deep links never auto-join: they open the join dialog.
+- `vxl-cli`: `--profile` per identity under `.vxl/`; `create|join|up|sectors|whoami`, `--for SECS` for scripted runs. Single-instance means one desktop app per machine, so use the CLI as the second peer.

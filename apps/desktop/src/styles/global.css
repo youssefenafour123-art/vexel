@@ -89,6 +89,16 @@ button {
   opacity: 0.9;
 }
 
+.btn-danger {
+  border-color: var(--vxl-red);
+  color: var(--vxl-red);
+  background: none;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--vxl-red-dim);
+}
+
 .btn:disabled {
   cursor: not-allowed;
   opacity: 0.45;
@@ -101,4 +111,30 @@ button {
   border-radius: var(--vxl-radius-sm);
   background: var(--vxl-volt-dim);
   color: var(--vxl-volt);
+}
+
+/* Inputs (BRAND_SYSTEM.md section 3: radius sm, 1px seam, volt focus ring). */
+.input {
+  height: var(--vxl-control-h);
+  padding: 0 var(--vxl-space-3);
+  border: 1px solid var(--vxl-border);
+  border-radius: var(--vxl-radius-sm);
+  background: var(--vxl-bg);
+  color: var(--vxl-text);
+  font: inherit;
+  user-select: text;
+}
+
+textarea.input {
+  height: auto;
+  padding: var(--vxl-space-2) var(--vxl-space-3);
+}
+
+.input::placeholder {
+  color: var(--vxl-text-muted);
+}
+
+.input:focus {
+  outline: 1px solid var(--vxl-volt);
+  outline-offset: 1px;
 }

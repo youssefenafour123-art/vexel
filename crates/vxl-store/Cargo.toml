@@ -1,6 +1,6 @@
 [package]
 name = "vxl-store"
-description = "SQLite persistence: per-author signed message logs, Sectors, settings."
+description = "SQLite persistence: identity, Sectors, members, settings (and, from Phase 2, signed message logs)."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -8,6 +8,11 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
+getrandom.workspace = true
+rmp-serde.workspace = true
+rusqlite.workspace = true
+thiserror.workspace = true
+vxl-core.workspace = true
 
 [lints]
 workspace = true

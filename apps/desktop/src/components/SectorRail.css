@@ -7,20 +7,52 @@
   padding: var(--vxl-space-3) 0;
   background: var(--vxl-bg);
   border-right: 1px solid var(--vxl-border);
+  overflow-y: auto;
 }
 
+.rail-sector,
 .rail-slot {
+  position: relative;
   display: grid;
   place-items: center;
+  flex: none;
   width: 48px;
   height: 48px;
   border-radius: var(--vxl-radius-lg);
-  border: 1px dashed var(--vxl-border);
+  border: 1px solid var(--vxl-border);
   background: var(--vxl-surface);
   color: var(--vxl-text-muted);
   cursor: pointer;
 }
 
-.rail-slot:disabled {
-  cursor: not-allowed;
+.rail-sector:hover,
+.rail-slot:hover {
+  background: var(--vxl-surface-hover);
+  color: var(--vxl-text);
+}
+
+.rail-sector.active {
+  background: var(--vxl-surface-active);
+  color: var(--vxl-text);
+}
+
+/* 3px volt bar on the left edge of the active Sector (BRAND_SYSTEM.md section 5). */
+.rail-bar {
+  position: absolute;
+  left: calc(-1 * var(--vxl-space-3) - 1px);
+  top: var(--vxl-space-3);
+  bottom: var(--vxl-space-3);
+  width: 3px;
+  border-radius: 0 var(--vxl-radius-sm) var(--vxl-radius-sm) 0;
+  background: var(--vxl-volt);
+  opacity: 0;
+  transition: opacity var(--vxl-dur-state) var(--vxl-ease);
+}
+
+.rail-sector.active .rail-bar {
+  opacity: 1;
+}
+
+.rail-slot {
+  border-style: dashed;
 }
