@@ -1,0 +1,104 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--vxl-bg);
+  color: var(--vxl-text);
+  font-family: var(--vxl-font-ui);
+  font-size: var(--vxl-fs-md);
+  line-height: var(--vxl-lh-md);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--vxl-volt);
+  outline-offset: 1px;
+}
+
+/* Telemetry text: mono, uppercase, fixed-width digits so ticking values never jitter. */
+.mono {
+  font-family: var(--vxl-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-family: var(--vxl-font-mono);
+  font-size: var(--vxl-fs-xs);
+  line-height: var(--vxl-lh-xs);
+  font-weight: 500;
+  letter-spacing: var(--vxl-tracking-label);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.muted {
+  color: var(--vxl-text-muted);
+}
+
+/* Buttons (BRAND_SYSTEM.md section 5) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vxl-space-2);
+  height: var(--vxl-control-h);
+  padding: 0 var(--vxl-space-4);
+  border-radius: var(--vxl-radius-sm);
+  border: 1px solid var(--vxl-border);
+  background: var(--vxl-surface);
+  font-family: var(--vxl-font-mono);
+  font-size: var(--vxl-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--vxl-tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity var(--vxl-dur-hover) var(--vxl-ease);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--vxl-surface-hover);
+}
+
+.btn-primary {
+  background: var(--vxl-volt);
+  border-color: var(--vxl-volt);
+  color: var(--vxl-on-volt);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--vxl-volt);
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--vxl-space-1);
+  border-radius: var(--vxl-radius-sm);
+  background: var(--vxl-volt-dim);
+  color: var(--vxl-volt);
+}

@@ -1,0 +1,48 @@
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--vxl-titlebar-h);
+  padding-left: var(--vxl-space-3);
+  background: var(--vxl-bg);
+  border-bottom: 1px solid var(--vxl-border);
+}
+
+.titlebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--vxl-space-2);
+}
+
+.wordmark {
+  font-family: var(--vxl-font-mono);
+  font-size: var(--vxl-fs-sm);
+  font-weight: 700;
+  letter-spacing: var(--vxl-tracking-wordmark);
+}
+
+.titlebar-controls {
+  display: flex;
+  height: 100%;
+}
+
+.wc {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--vxl-text-muted);
+  cursor: pointer;
+}
+
+.wc:hover {
+  background: var(--vxl-surface-hover);
+  color: var(--vxl-text);
+}
+
+.wc-close:hover {
+  background: var(--vxl-red);
+  color: var(--vxl-text);
+}

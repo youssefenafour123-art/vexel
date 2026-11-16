@@ -1,0 +1,26 @@
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vxl-space-2);
+  width: var(--vxl-rail-w);
+  padding: var(--vxl-space-3) 0;
+  background: var(--vxl-bg);
+  border-right: 1px solid var(--vxl-border);
+}
+
+.rail-slot {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--vxl-radius-lg);
+  border: 1px dashed var(--vxl-border);
+  background: var(--vxl-surface);
+  color: var(--vxl-text-muted);
+  cursor: pointer;
+}
+
+.rail-slot:disabled {
+  cursor: not-allowed;
+}

@@ -1,0 +1,20 @@
+[package]
+name = "vxl-platform"
+description = "OS integration: process memory now; MMCSS, low-level input hooks and tray raster in later phases."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true, features = [
+  "Win32_Foundation",
+  "Win32_System_ProcessStatus",
+  "Win32_System_Threading",
+] }
+
+[lints]
+workspace = true

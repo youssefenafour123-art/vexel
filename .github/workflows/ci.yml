@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  COREPACK_ENABLE_DOWNLOAD_PROMPT: 0
+
+jobs:
+  check:
+    name: Lint, test, build (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Install UI deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck UI
+        run: pnpm typecheck
+
+      # tauri::generate_context! needs apps/desktop/dist to exist before any cargo step.
+      - name: Build UI
+        run: pnpm web:build
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: rustfmt
+        run: cargo fmt --all --check
+
+      - name: clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: test
+        run: cargo test --workspace
+
+      - name: Release build (no installer)
+        run: cargo build --release -p vexel-desktop -p vxl-cli

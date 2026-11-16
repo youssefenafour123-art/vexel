@@ -1,0 +1,28 @@
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--vxl-strip-h);
+  padding: 0 var(--vxl-space-3);
+  background: var(--vxl-bg);
+  border-top: 1px solid var(--vxl-border);
+}
+
+.strip-group {
+  display: flex;
+  align-items: center;
+}
+
+.seg {
+  padding: 0 var(--vxl-space-3);
+  white-space: nowrap;
+}
+
+.seg + .seg {
+  border-left: 1px solid var(--vxl-border);
+}
+
+.seg[data-status="ok"] { color: var(--vxl-volt); }
+.seg[data-status="warn"] { color: var(--vxl-amber); }
+.seg[data-status="bad"] { color: var(--vxl-red); }
+.seg[data-status="idle"] { color: var(--vxl-text-muted); }

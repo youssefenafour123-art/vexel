@@ -1,0 +1,58 @@
+[workspace]
+resolver = "3"
+members = ["crates/*", "apps/desktop/src-tauri", "tools/vxl-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/vexel/vexel"
+publish = false
+
+[workspace.dependencies]
+# internal
+vxl-core = { path = "crates/vxl-core" }
+vxl-metrics = { path = "crates/vxl-metrics" }
+vxl-platform = { path = "crates/vxl-platform" }
+vxl-store = { path = "crates/vxl-store" }
+vxl-net = { path = "crates/vxl-net" }
+vxl-audio = { path = "crates/vxl-audio" }
+vxl-aux = { path = "crates/vxl-aux" }
+vxl-telemetry = { path = "crates/vxl-telemetry" }
+vxl-pack = { path = "crates/vxl-pack" }
+# external (later phases add iroh, cpal, opus, rusqlite, ... here)
+anyhow = "1"
+clap = { version = "4.6", features = ["derive"] }
+mimalloc = { version = "0.1", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+windows-sys = "0.61"
+tauri = { version = "2", features = [] }
+tauri-build = { version = "2", features = [] }
+
+[workspace.lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+missing_debug_implementations = "warn"
+rust_2018_idioms = { level = "warn", priority = -1 }
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+dbg_macro = "warn"
+todo = "warn"
+
+[profile.dev]
+opt-level = 1            # audio/DSP code is unusable at opt-level 0
+[profile.dev.package."*"]
+opt-level = 3            # deps fast, our code debuggable
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true

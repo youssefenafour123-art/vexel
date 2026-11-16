@@ -1,0 +1,26 @@
+.empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vxl-space-4);
+  background: var(--vxl-bg);
+}
+
+.empty-title {
+  margin: var(--vxl-space-2) 0 0;
+  font-size: var(--vxl-fs-lg);
+  line-height: var(--vxl-lh-lg);
+  color: var(--vxl-text);
+}
+
+.empty-tagline {
+  margin: 0;
+}
+
+.empty-actions {
+  display: flex;
+  gap: var(--vxl-space-3);
+  margin: var(--vxl-space-2) 0;
+}

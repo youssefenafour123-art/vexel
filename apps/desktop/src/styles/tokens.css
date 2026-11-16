@@ -1,0 +1,73 @@
+/*
+ * VEXEL design tokens: "F1 Carbon Telemetry".
+ * SINGLE SOURCE OF TRUTH for the UI. Mirrors BRAND_SYSTEM.md exactly.
+ * Components reference these variables and never hard-code hex values.
+ */
+:root {
+  /* Core palette */
+  --vxl-bg: #0b0c0e;              /* Carbon Matte */
+  --vxl-surface: #16181d;         /* Tactical Titanium */
+  --vxl-border: #1e2028;          /* Titanium Seam */
+  --vxl-border-icon: #1b1d24;     /* Icon Seam */
+  --vxl-volt: #d4ff00;            /* Telemetry Volt (hero) */
+  --vxl-amber: #ff9900;           /* Aux Amber */
+  --vxl-red: #ff334b;             /* Laser Red */
+  --vxl-text: #f4f5f7;
+  --vxl-text-muted: #8a909e;
+
+  /* Allowed derivations */
+  --vxl-surface-hover: #1b1e24;
+  --vxl-surface-active: #20232b;
+  --vxl-volt-dim: rgba(212, 255, 0, 0.12);
+  --vxl-amber-dim: rgba(255, 153, 0, 0.12);
+  --vxl-red-dim: rgba(255, 51, 75, 0.12);
+  --vxl-on-volt: #0b0c0e;
+
+  /* Typography */
+  --vxl-font-ui: "Geist Variable", "Inter", system-ui, "Segoe UI", sans-serif;
+  --vxl-font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+  --vxl-fs-xs: 11px;   --vxl-lh-xs: 14px;
+  --vxl-fs-sm: 12px;   --vxl-lh-sm: 16px;
+  --vxl-fs-md: 14px;   --vxl-lh-md: 20px;
+  --vxl-fs-lg: 16px;   --vxl-lh-lg: 22px;
+  --vxl-fs-xl: 20px;   --vxl-lh-xl: 26px;
+  --vxl-fs-hero: 32px; --vxl-lh-hero: 36px;
+  --vxl-tracking-label: 0.08em;
+  --vxl-tracking-wordmark: 0.12em;
+
+  /* Spacing (4px grid) */
+  --vxl-space-1: 4px;
+  --vxl-space-2: 8px;
+  --vxl-space-3: 12px;
+  --vxl-space-4: 16px;
+  --vxl-space-5: 20px;
+  --vxl-space-6: 24px;
+  --vxl-space-7: 32px;
+  --vxl-space-8: 48px;
+
+  /* Radius */
+  --vxl-radius-sm: 4px;
+  --vxl-radius-md: 8px;
+  --vxl-radius-lg: 12px;
+
+  /* Motion */
+  --vxl-ease: cubic-bezier(0.2, 0, 0, 1);
+  --vxl-dur-hover: 80ms;
+  --vxl-dur-state: 140ms;
+  --vxl-dur-panel: 200ms;
+
+  /* Layout */
+  --vxl-titlebar-h: 32px;
+  --vxl-strip-h: 28px;
+  --vxl-rail-w: 72px;
+  --vxl-panel-w: 240px;
+  --vxl-control-h: 32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --vxl-dur-hover: 0ms;
+    --vxl-dur-state: 0ms;
+    --vxl-dur-panel: 0ms;
+  }
+}
